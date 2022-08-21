@@ -8,17 +8,15 @@ weatherForm.addEventListener("submit", (e) => {
   message1.textContent = "Loading";
   message2.textContent = "";
   const location = search.value;
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          message1.textContent = "";
-          message2.textContent = data.error;
-        } else {
-          message1.textContent = data.label;
-          message2.textContent = data.forecastData;
-        }
-      });
-    }
-  );
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        message1.textContent = "";
+        message2.textContent = data.error;
+      } else {
+        message1.textContent = data.label;
+        message2.textContent = data.forecastData;
+      }
+    });
+  });
 });
